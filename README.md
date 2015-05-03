@@ -2,11 +2,11 @@ ViPR Cookbook
 -------------
 
 The ViPR Cookbook is a library cookbook that provides resources to
-manage EMC's ViPR Controller[1]
+manage [EMC's ViPR Controller](http://www.emc.com/techpubs/vipr/what_is_vipr-3.htm)
 
 Scope
 -----
-This cookbook utilizes the ViPRuby[2] gem to interact with EMC ViPR Controllers.
+This cookbook utilizes the [ViPRuby](https://github.com/emccode/Vipruby) gem to interact with EMC ViPR Controllers.
 
 Requirements
 ------------
@@ -86,9 +86,6 @@ Unless otherwise noted, all parameters default to `nil`
 
 - `:create` - Adds a vCenter.
 - `:delete` - Removes a vCenter host.
-
-[1]: http://www.emc.com/techpubs/vipr/what_is_vipr-3.htm
-[2]: https://github.com/emccode/Vipruby
 
 License & Authors
 -----------------
