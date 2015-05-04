@@ -16,12 +16,27 @@
 # limitations under the License.
 #
 
-require 'vipruby'
-
 module ViprUtils
 
   def vipr
-    @vipr ||= Vipr.new(new_resource.vipr_url,new_resource.vipr_user,new_resource.vipr_password,new_resource.verify_cert)
+    ensure_vipruby_gem_installed
+    begin
+      @vipr ||= Vipr.new(new_resource.vipr_url,new_resource.vipr_user,new_resource.vipr_password,new_resource.verify_cert)
+    rescue RestClient::Unauthorized
+      raise "Unauthorized...please check credentials."
+    end
   end
 
+  def ensure_vipruby_gem_installed
+    begin
+      require 'vipruby'
+    rescue LoadError
+      Chef::Log.info("Missing gem 'vipruby'...installing now.")
+      chef_gem "vipruby" do
+        version "0.1.7"
+        action :install
+      end
+      require 'vipruby'
+    end
+  end
 end

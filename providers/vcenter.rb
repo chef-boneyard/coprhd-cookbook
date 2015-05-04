@@ -24,7 +24,6 @@ def whyrun_supported?
 end
 
 action :create do
-  require 'vipruby'
 
   fqdn_or_ip = new_resource.fqdn_or_ip
   name = new_resource.name
@@ -44,7 +43,7 @@ action :create do
 end
 
 action :delete do
-  require 'vipruby'
+
   id = new_resource.id
   name = new_resource.name
     
