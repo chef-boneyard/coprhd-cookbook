@@ -20,9 +20,9 @@ The following platforms have been tested with Test Kitchen:
 |----------------+-----|
 | ubuntu-14.04   |  X  | 
 |----------------+-----|
-| centos-7.0     |     | 
+| centos-7.0     |  X  | 
 |----------------+-----|
-| centos-6.6     |     | 
+| centos-6.6     |  X  | 
 |----------------+-----|
 ```
 
@@ -53,14 +53,14 @@ end
 
 Unless otherwise noted, all parameters default to `nil`
 
-host_type (String) (defaults to: nil) — Type of Host. "Windows", "Linux", or, "HPUX". This is a required string.
-ip_or_dns (String) (defaults to: nil) — IP Address or FQDN of host. This is a required string.
-name (String) (defaults to: nil) — Arbitrary Name only necesary and identifiable by ViPR. This is a required string.
-user_name (String) (defaults to: nil) — User Name to connect to the host. This is a required string.
-password (String) (defaults to: nil) — Password for the User Name to connect to the host. This is a required string.
-port (String) (defaults to: nil) — Port to connect to the host. This is an optional integer. Defaults will be used if no param is passed.
-use_ssl (String) (defaults to: nil) — Whether SSL is used. Trur or False. Optional Param
-discoverable (String) (defaults to: nil) — True or False. Initators and Nodes will be discovered after being added. By default this is true
+- `host_type` - Type of Host. "Windows", "Linux", or, "HPUX". This is a required string.
+- `ip_or_dns` - IP Address or FQDN of host. This is a required string.
+- `name` - Arbitrary Name only necesary and identifiable by ViPR. This is a required string.
+- `user_name` - User Name to connect to the host. This is a required string.
+- `password` - Password for the User Name to connect to the host. This is a required string.
+- `port` - Port to connect to the host. This is an optional integer. Defaults will be used if no param is passed.
+- `use_ssl` - Whether SSL is used. True or False. Optional Param
+- `discoverable` - True or False. Initators and Nodes will be discovered after being added. By default this is true
 
 #### Actions
 
@@ -75,12 +75,12 @@ This resource manages the creation and removal of VMware vCenter from a ViPR Con
 
 Unless otherwise noted, all parameters default to `nil` 
 
-- `fqdn_or_ip`  — FQDN or IP Address of the vCenter server to add. This is a required string.
-- `name` — Name of the vCenter server. This name is arbitrary and only exists within ViPR. This is a required string.
-- `user_name` — User Name that will be used for authenticating against the vCenter Server. This is a required string.
-- `password` — Password for the user_name that will be used for authenticating against the vCenter Server. This is a required string.
-- `port` — Port of the vCenter server. This is an optional parameter. If no parameter is present, the default port of '443' will be used. If registering to a different tenant than default, set this param to nil
-- `tenant` — Specify a tenant_uid where the vCenter will be registered. By default it will be added to the tenant of the current logged in ViPR user. This string is optional.
+- `fqdn_or_ip` - FQDN or IP Address of the vCenter server to add. This is a required string.
+- `name` - Name of the vCenter server. This name is arbitrary and only exists within ViPR. This is a required string.
+- `user_name` - User Name that will be used for authenticating against the vCenter Server. This is a required string.
+- `password` - Password for the user_name that will be used for authenticating against the vCenter Server. This is a required string.
+- `port` - Port of the vCenter server. This is an optional parameter. If no parameter is present, the default port of '443' will be used. If registering to a different tenant than default, set this param to nil
+- `tenant` - Specify a tenant_uid where the vCenter will be registered. By default it will be added to the tenant of the current logged in ViPR user. This string is optional.
 
 #### Actions
 
