@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: coprhd
-# Provider:: coprhd_vcenter
+# Provider:: storage
 # Author:: Seth Thomas
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,39 +23,21 @@ def whyrun_supported?
   true
 end
 
-action :create do
-
-  fqdn_or_ip = new_resource.fqdn_or_ip
+action :add do
+ 
+  storage_type = new_resource.storage_type
+  ip_or_dns = new_resource.ip_or_dns
   name = new_resource.name
   user_name = new_resource.user_name
   password = new_resource.password
   port = new_resource.port
-  tenant = new_resource.tenant
-  
-  vcenter = coprhd.find_vcenter_object(name)
- 
-  if !vcenter["resource"][0].nil?
-    Chef::Log.info "vCenter #{name} already exists - nothing to do"
+  use_ssl = new_resource.use_ssl
+
+  if coprhd.host_exists?(name) 
+    Chef::Log.info("Storage system #{name} already exists - nothing to do")
   else
-    coprhd.add_vcenter(fqdn_or_ip, name, user_name, password, port, tenant)
-    new_resource.updated_by_last_action(true)
-  end
-end
-
-action :delete do
-
-  id = new_resource.id
-  name = new_resource.name
-    
-  vcenter = coprhd.find_vcenter_object(name)
-  if id.nil? && !vcenter["resource"][0].nil?
-    id = vcenter["resource"][0]["id"]
-  end
-
-  if vcenter["resource"][0].nil?
-    Chef::Log.info "vCenter #{name} doesn't exist - nothing to do"
-  else
-    coprhd.delete_vcenter(id)
+    coprhd.add_#{storage_type}(name, ip_or_dns, user_name, password, port, use_ssl)
+    Chef::Log.info("Added #{host_type} host #{name}")
     new_resource.updated_by_last_action(true)
   end
 end

@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: vipr
-# Library:: viprutils
+# Cookbook Name:: coprhd
+# Library:: coprhdutils
 # Author:: Seth Thomas
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,12 +16,12 @@
 # limitations under the License.
 #
 
-module ViprUtils
+module CoprhdUtils
 
-  def vipr
+  def coprhd
     ensure_vipruby_gem_installed
     begin
-      @vipr ||= Vipr.new(new_resource.vipr_url,new_resource.vipr_user,new_resource.vipr_password,new_resource.verify_cert)
+      @coprhd ||= Vipr.new(new_resource.coprhd_url,new_resource.coprhd_user,new_resource.coprhd_password,new_resource.verify_cert)
     rescue RestClient::Unauthorized
       raise "Unauthorized...please check credentials."
     end

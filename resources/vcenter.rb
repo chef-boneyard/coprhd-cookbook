@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: vipr
-# Resource:: vipr_vcenter
+# Cookbook Name:: coprhd
+# Resource:: coprhd_vcenter
 # Author:: Seth Thomas
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,8 +28,8 @@ attribute :name, kind_of: String, name_attribute: true
 attribute :id, kind_of: String, required: false
 attribute :port, kind_of: Integer, required: false
 
-attribute :vipr_user, kind_of: String, required: true
-attribute :vipr_password, kind_of: String, required: true
-attribute :vipr_url, kind_of: String, required: true
+attribute :coprhd_user, kind_of: String, required: true
+attribute :coprhd_password, kind_of: String, required: true
+attribute :coprhd_url, kind_of: String, required: true
 attribute :verify_cert, kind_of: String, required: false, default: nil
 

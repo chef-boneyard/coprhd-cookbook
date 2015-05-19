@@ -1,12 +1,14 @@
-ViPR Cookbook
+CoprHD Cookbook
 -------------
 
-The ViPR Cookbook is a library cookbook that provides resources to
-manage [EMC's ViPR Controller](http://www.emc.com/techpubs/vipr/what_is_vipr-3.htm)
+The CoprHD Cookbook is a library cookbook that provides resources to
+manage [EMC's CoprHD](https://coprhd.atlassian.net/wiki/display/COP/FAQ)
+
+For more info during the open source transition see [EMC ViPR Controller](http://www.emc.com/techpubs/coprhd/what_is_coprhd-3.htm)
 
 Scope
 -----
-This cookbook utilizes the [ViPRuby](https://github.com/emccode/Vipruby) gem to interact with EMC ViPR Controllers.
+This cookbook utilizes the [Vipruby](https://github.com/emccode/Vipruby) gem to interact with CoprHD / EMC ViPR Controllers.
 
 Requirements
 ------------
@@ -29,16 +31,16 @@ The following platforms have been tested with Test Kitchen:
 Resources Overview
 ------------------
 
-### vipr_host
+### coprhd_host
 
-This resource manages the creation and removal of hosts from a ViPR Controller instance.
+This resource manages the creation and removal of hosts from a CoprHD Controller instance.
 
 #### Example
 ```ruby
-vipr_host 'host01' do
-  vipr_user     'root'
-  vipr_password 'ChangeMe1!'
-  vipr_url      '192.168.10.50'
+coprhd_host 'host01' do
+  coprhd_user     'root'
+  coprhd_password 'ChangeMe1!'
+  coprhd_url      '192.168.10.50'
 
   host_type 'Linux'
   ip_or_dns '192.168.10.333'
@@ -55,7 +57,7 @@ Unless otherwise noted, all parameters default to `nil`
 
 - `host_type` - Type of Host. "Windows", "Linux", or, "HPUX". This is a required string.
 - `ip_or_dns` - IP Address or FQDN of host. This is a required string.
-- `name` - Arbitrary Name only necesary and identifiable by ViPR. This is a required string.
+- `name` - Arbitrary Name only necesary and identifiable by CoprHD. This is a required string.
 - `user_name` - User Name to connect to the host. This is a required string.
 - `password` - Password for the User Name to connect to the host. This is a required string.
 - `port` - Port to connect to the host. This is an optional integer. Defaults will be used if no param is passed.
@@ -67,20 +69,20 @@ Unless otherwise noted, all parameters default to `nil`
 - `:create` - Adds a host.
 - `:delete` - Removes a host.
 
-### vipr_vcenter
+### coprhd_vcenter
 
-This resource manages the creation and removal of VMware vCenter from a ViPR Controller instance.
+This resource manages the creation and removal of VMware vCenter from a CoprHD Controller instance.
 
 #### Parameters
 
 Unless otherwise noted, all parameters default to `nil` 
 
 - `fqdn_or_ip` - FQDN or IP Address of the vCenter server to add. This is a required string.
-- `name` - Name of the vCenter server. This name is arbitrary and only exists within ViPR. This is a required string.
+- `name` - Name of the vCenter server. This name is arbitrary and only exists within CoprHD. This is a required string.
 - `user_name` - User Name that will be used for authenticating against the vCenter Server. This is a required string.
 - `password` - Password for the user_name that will be used for authenticating against the vCenter Server. This is a required string.
 - `port` - Port of the vCenter server. This is an optional parameter. If no parameter is present, the default port of '443' will be used. If registering to a different tenant than default, set this param to nil
-- `tenant` - Specify a tenant_uid where the vCenter will be registered. By default it will be added to the tenant of the current logged in ViPR user. This string is optional.
+- `tenant` - Specify a tenant_uid where the vCenter will be registered. By default it will be added to the tenant of the current logged in CoprHD user. This string is optional.
 
 #### Actions
 

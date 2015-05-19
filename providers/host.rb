@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: vipr
-# Provider:: vipr_host
+# Cookbook Name:: coprhd
+# Provider:: coprhd_host
 # Author:: Seth Thomas
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,7 +17,7 @@
 #
 
 
-include ViprUtils
+include CoprhdUtils
 
 def whyrun_supported?
   true
@@ -34,10 +34,10 @@ action :create do
   use_ssl = new_resource.use_ssl
   discoverable = new_resource.discoverable
 
-  if vipr.host_exists?(name) 
+  if coprhd.host_exists?(name) 
     Chef::Log.info("Host #{name} already exists - nothing to do")
   else
-    vipr.add_host(host_type, ip_or_dns, name, user_name, password, port, use_ssl, discoverable)
+    coprhd.add_host(host_type, ip_or_dns, name, user_name, password, port, use_ssl, discoverable)
     Chef::Log.info("Added #{host_type} host #{name}")
     new_resource.updated_by_last_action(true)
   end
@@ -47,13 +47,13 @@ action :delete do
   name = new_resource.name
   host_id = new_resource.host_id
  
-  if !vipr.host_exists?(name)
+  if !coprhd.host_exists?(name)
     Chef::Log.info("Host #{name} doesn't exist - nothing to do")
   else
-    hosts = vipr.get_all_hosts['host']
+    hosts = coprhd.get_all_hosts['host']
     host = hosts.find{|host| host["name"] == name }
 	  
-    vipr.deactivate_host(host["id"])
+    coprhd.deactivate_host(host["id"])
     new_resource.updated_by_last_action(true)
   end
 end
